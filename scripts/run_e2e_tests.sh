@@ -66,8 +66,8 @@ fi
 echo "Seeding E2E database..."
 "$PYTHON_BIN" scripts/seed_e2e_db.py
 
-echo "Building frontend with E2E API base URL ($BACKEND_URL)..."
-(cd frontend && VITE_API_BASE_URL="$BACKEND_URL" npm run build)
+echo "Building frontend with E2E API base URL (${BACKEND_URL}/api/v1)..."
+(cd frontend && VITE_API_BASE_URL="${BACKEND_URL}/api/v1" npm run build)
 
 echo ""
 echo "=== Phase 9 E2E Test Runner ==="
