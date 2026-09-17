@@ -1,0 +1,23 @@
+# Core Runtime
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+httpx==0.25.0
+beautifulsoup4==4.12.2
+lxml==4.9.3
+nltk==3.8.1
+pyyaml==6.0.1
+psutil>=5.9.0
+prometheus-client>=0.20.0
+
+# Testing & Hardening (Dev/Test only)
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-asyncio==0.21.1
+locust>=2.15.0
+playwright>=1.40.0
+
+# Code Quality
+black==23.10.1
+flake8==6.1.0
+mypy==1.6.1
+types-PyYAML==6.0.12.12

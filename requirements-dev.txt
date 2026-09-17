@@ -1,0 +1,14 @@
+-r requirements.txt
+locust>=2.15.0
+playwright>=1.40.0
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-asyncio==0.21.1
+black==23.10.1
+flake8==6.1.0
+mypy==1.6.1
+types-PyYAML==6.0.12.12
+
+# Security Audit & Scanning (Dev/Test only)
+pip-audit>=2.7.0
+bandit>=1.7.5

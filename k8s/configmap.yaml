@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: search-engine-config
+  labels:
+    app: search-engine
+data:
+  ENVIRONMENT: "production"
+  PORT: "8000"
+  HOST: "0.0.0.0"
+  DATABASE_PATH: "/app/data/index.db"
+  LOG_LEVEL: "INFO"
+  LOG_QUERIES: "false"
+  RATE_LIMIT_PER_MINUTE: "100"
+  ENABLE_HSTS: "true"
+  MAX_OFFSET: "1000"
+  CRAWL_DELAY: "1.0"
+  USER_AGENT: "PrivateSearchCrawler/1.0"
+

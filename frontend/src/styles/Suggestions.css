@@ -1,0 +1,54 @@
+@import './variables.css';
+
+.suggestions-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 50;
+  overflow: hidden;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.suggestions-list {
+  list-style: none;
+  padding: 0.25rem 0;
+  margin: 0;
+}
+
+.suggestion-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.suggestion-item:hover,
+.suggestion-item.active {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.suggestion-icon {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.suggestion-item.active .suggestion-icon,
+.suggestion-item:hover .suggestion-icon {
+  color: var(--primary);
+}
+

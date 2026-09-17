@@ -1,0 +1,50 @@
+# Version control
+.git
+.gitignore
+
+# CI/CD & Brain
+.github
+.gemini
+brain
+
+# Python virtualenvs and caches
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage/
+htmlcov/
+.coverage
+.coverage.*
+
+# Node / Frontend artifacts
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+
+# Data and logs (mounted at runtime via volume / PVC)
+data/
+*.db
+*.db-wal
+*.db-shm
+*.db.sha256
+*.log
+
+# Environment secrets
+.env
+.env.production
+.env.local
+
+# Documentation and tests (not needed in production runtime image)
+tests/
+benchmarks/
+docs/
+*.md
+

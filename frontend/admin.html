@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Private Search Engine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container admin-container">
+        <header>
+            <div class="nav-links">
+                <a href="index.html">← Back to Search</a>
+            </div>
+            <h1>Admin Dashboard</h1>
+            <p class="subtitle">Crawler status, stats, and index management</p>
+        </header>
+        <main>
+            <section class="card">
+                <h2>Crawler Controls</h2>
+                <div class="actions">
+                    <button id="btn-crawl" class="btn primary">Start Crawl</button>
+                    <button id="btn-stats" class="btn secondary">Refresh Stats</button>
+                </div>
+            </section>
+            <section class="card">
+                <h2>Index Statistics</h2>
+                <div id="stats-display" class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Documents</span>
+                        <span class="stat-value" id="stat-docs">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Indexed Terms</span>
+                        <span class="stat-value" id="stat-terms">-</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+

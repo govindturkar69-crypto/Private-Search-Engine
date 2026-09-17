@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: search-engine-data-pvc
+  labels:
+    app: search-engine
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  # Leave storageClassName empty or omitted to use the cluster's default StorageClass.
+  # For specific cloud providers:
+  # storageClassName: gp3            # AWS EKS
+  # storageClassName: standard-rwo   # Google GKE
+  # storageClassName: managed-csi    # Azure AKS
+

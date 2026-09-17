@@ -1,0 +1,30 @@
+groups:
+  - name: search_engine_alerts
+    rules:
+      - alert: HighErrorRate
+        expr: (sum(rate(http_requests_total{status=~"5.."}[5m])) or vector(0)) / (sum(rate(http_requests_total[5m])) > 0) > 0.05
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "API 5xx error rate exceeded 5% over 5m"
+          description: "HTTP 5xx responses are currently {{ $value | humanizePercentage }} of total API traffic."
+
+      - alert: HighSearchLatency
+        expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{handler="/api/v1/search"}[5m])) by (le)) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Search API p95 latency exceeded 500ms (provisional)"
+          description: "Search 95th percentile latency is {{ $value | humanizeDuration }} over the last 5 minutes."
+
+      - alert: HighSystemLatency
+        expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 1.0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Overall HTTP p95 latency exceeded 1000ms"
+          description: "Overall 95th percentile latency across all endpoints is {{ $value | humanizeDuration }}."
+

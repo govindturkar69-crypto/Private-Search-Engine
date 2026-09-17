@@ -1,0 +1,100 @@
+# Python bytecode & environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments & local envs
+.env
+.env.local
+.env.*.local
+.env.production
+.env.*.production
+!.env.example
+!.env.production.example
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+*.code-workspace
+
+# Database & Inverted Index Storage
+*.db
+*.db-wal
+*.db-shm
+*.db.sha256
+*.sqlite
+data/
+
+# Logs
+*.log
+logs/
+app.log
+
+# Frontend build & dependencies
+frontend/node_modules/
+frontend/dist/
+frontend/coverage/
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+frontend/.vite/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Test & Coverage artifacts
+htmlcov/
+htmlcov-frontend/
+.coverage
+.coverage.*
+.pytest_cache/
+coverage.xml
+test-results/
+playwright-report/
+loadtest_results*
+reports/
+.tox/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+
+# Build & packaging artifacts
+dist/
+build/
+*.egg-info/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+*.egg
+target/
+
+# Temporary files
+*.tmp
+*.bak
+.cache/
+
+# Credentials & secrets (NEVER commit)
+secrets.txt
+credentials.json
+*.pem
+*.key
+*.cert
