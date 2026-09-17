@@ -63,13 +63,11 @@ elif [ -f "./venv/Scripts/python.exe" ]; then
 fi
 
 # --- Pre-flight checks ---
-if [ ! -f "$E2E_DB_PATH" ]; then
-    echo "E2E database missing. Seeding now..."
-    "$PYTHON_BIN" scripts/seed_e2e_db.py
-fi
+echo "Seeding E2E database..."
+"$PYTHON_BIN" scripts/seed_e2e_db.py
 
 echo "Building frontend with E2E API base URL ($BACKEND_URL)..."
-VITE_API_BASE_URL="$BACKEND_URL" npm run build --prefix frontend
+(cd frontend && VITE_API_BASE_URL="$BACKEND_URL" npm run build)
 
 echo ""
 echo "=== Phase 9 E2E Test Runner ==="
@@ -78,8 +76,10 @@ echo "Frontend : $FRONTEND_URL"
 echo ""
 
 # --- Start Backend ---
+export ENVIRONMENT="development"
 export ADMIN_TOKEN="dev-admin-secret-token"
 export DATABASE_URL="$E2E_DB_PATH"
+export DATABASE_PATH="$E2E_DB_PATH"
 export PORT="$BACKEND_PORT"
 "$PYTHON_BIN" -m uvicorn src.main:create_app \
     --host 127.0.0.1 \
@@ -88,7 +88,7 @@ export PORT="$BACKEND_PORT"
 BACKEND_PID=$!
 
 # --- Start Frontend Preview ---
-npm run preview --prefix frontend -- --port "$FRONTEND_PORT" --host 127.0.0.1 &
+(cd frontend && npx vite preview --port "$FRONTEND_PORT" --host 127.0.0.1) &
 FRONTEND_PID=$!
 
 # --- Wait for readiness ---

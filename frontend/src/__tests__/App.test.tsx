@@ -92,7 +92,7 @@ describe('App & URL Synchronization', () => {
       )
     })
 
-    expect(screen.getByText('Welcome to Python.org')).toBeInTheDocument()
+    expect(await screen.findByText('Welcome to Python.org')).toBeInTheDocument()
   })
 
   it('submitting a search updates search state and renders results', async () => {
