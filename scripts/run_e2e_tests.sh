@@ -100,11 +100,7 @@ echo ""
 echo "Running Playwright E2E tests..."
 export E2E_BASE_URL="$FRONTEND_URL"
 
-"$PYTEST_BIN" tests/test_e2e.py \
-    -v \
-    -m e2e \
-    --screenshot on-failure \
-    --output test-results/e2e
+"$PYTEST_BIN" tests/test_e2e.py -v -m e2e
 
 echo ""
 echo "E2E tests PASSED."
