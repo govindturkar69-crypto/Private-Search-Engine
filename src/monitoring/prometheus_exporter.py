@@ -114,4 +114,3 @@ class PrometheusMetrics:
 
 
 __all__ = ["PrometheusMetrics", "CONTENT_TYPE_LATEST"]
-

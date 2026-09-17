@@ -57,17 +57,14 @@ def create_backup(
 ) -> Path:
     """Perform live, transactionally consistent SQLite backup using backup API."""
     if not source_db_path.is_file():
-        raise FileNotFoundError(
-            f"Source database file not found: {source_db_path}"
-        )
+        raise FileNotFoundError(f"Source database file not found: {source_db_path}")
 
     backup_dir.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     target_backup_path = backup_dir / f"index_backup_{timestamp}.db"
 
     logger.info(
-        f"Starting live SQLite backup from {source_db_path} to "
-        f"{target_backup_path}"
+        f"Starting live SQLite backup from {source_db_path} to " f"{target_backup_path}"
     )
 
     # Use SQLite Online Backup API
@@ -167,9 +164,7 @@ def purge_expired_backups(
             purged_count += 1
             checksum_item = item.with_suffix(".db.sha256")
             if dry_run:
-                logger.info(
-                    f"[DRY-RUN] Would delete expired backup: {item.name}"
-                )
+                logger.info(f"[DRY-RUN] Would delete expired backup: {item.name}")
             else:
                 item.unlink(missing_ok=True)
                 checksum_item.unlink(missing_ok=True)

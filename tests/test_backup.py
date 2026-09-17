@@ -93,9 +93,7 @@ class TestSQLiteBackupSubsystem:
         with pytest.raises(FileNotFoundError):
             create_backup(nonexistent_db, backup_dir)
 
-    def test_verify_database_integrity_corrupted_file(
-        self, tmp_path: Path
-    ) -> None:
+    def test_verify_database_integrity_corrupted_file(self, tmp_path: Path) -> None:
         """Verify PRAGMA integrity check detects corrupted or non-database files."""
         corrupted_db = tmp_path / "corrupted.db"
         corrupted_db.write_bytes(b"NOT A VALID SQLITE DATABASE HEADER DATA")

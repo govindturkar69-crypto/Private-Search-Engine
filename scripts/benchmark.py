@@ -190,8 +190,7 @@ def run_benchmarks() -> None:
         # 3. Uncached vs Cached Query Latency
         # -------------------------------------------------------------------
         print(
-            "\n[3/5] Uncached (Cold) vs Cached (Warm) Latencies "
-            "(100 iterations)..."
+            "\n[3/5] Uncached (Cold) vs Cached (Warm) Latencies " "(100 iterations)..."
         )
         with SQLiteIndexer(db_path) as indexer:
             engine = SearchEngine(indexer)

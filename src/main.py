@@ -130,9 +130,7 @@ def create_app(
                 performance_metrics or PerformanceMetricsCollector()
             )
         if not getattr(app.state, "prometheus_metrics", None):
-            app.state.prometheus_metrics = (
-                prometheus_metrics or PrometheusMetrics()
-            )
+            app.state.prometheus_metrics = prometheus_metrics or PrometheusMetrics()
 
         crawl_mgr = app.state.crawl_manager
 
@@ -187,9 +185,7 @@ def create_app(
     app.state.config_service = ConfigService(app_config)
     app.state.log_service = LogService("data/app.log")
     app.state.search_cache = search_cache or LRUCache(max_entries=1000)
-    app.state.performance_metrics = (
-        performance_metrics or PerformanceMetricsCollector()
-    )
+    app.state.performance_metrics = performance_metrics or PerformanceMetricsCollector()
     app.state.prometheus_metrics = prometheus_metrics or PrometheusMetrics()
 
     # CORS Middleware
@@ -265,11 +261,7 @@ def create_app(
 
         # 4. Centralized Prometheus Metrics Recording
         route = request.scope.get("route")
-        if (
-            response.status_code == 404
-            or not route
-            or not hasattr(route, "path")
-        ):
+        if response.status_code == 404 or not route or not hasattr(route, "path"):
             handler_label = "unmatched"
         elif route.path == "/{full_path:path}":
             handler_label = "spa"

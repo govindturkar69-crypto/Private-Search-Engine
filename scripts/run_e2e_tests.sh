@@ -51,16 +51,25 @@ wait_for_ready() {
     exit 1
 }
 
+# Detect Python and Pytest binaries
+PYTHON_BIN="python"
+PYTEST_BIN="pytest"
+if [ -f "./venv/bin/python" ]; then
+    PYTHON_BIN="./venv/bin/python"
+    PYTEST_BIN="./venv/bin/pytest"
+elif [ -f "./venv/Scripts/python.exe" ]; then
+    PYTHON_BIN="./venv/Scripts/python.exe"
+    PYTEST_BIN="./venv/Scripts/pytest.exe"
+fi
+
 # --- Pre-flight checks ---
 if [ ! -f "$E2E_DB_PATH" ]; then
     echo "E2E database missing. Seeding now..."
-    ./venv/bin/python scripts/seed_e2e_db.py
+    "$PYTHON_BIN" scripts/seed_e2e_db.py
 fi
 
-if [ ! -f "frontend/dist/index.html" ]; then
-    echo "Frontend dist missing. Building with E2E API base URL..."
-    VITE_API_BASE_URL="$BACKEND_URL" npm run build --prefix frontend
-fi
+echo "Building frontend with E2E API base URL ($BACKEND_URL)..."
+VITE_API_BASE_URL="$BACKEND_URL" npm run build --prefix frontend
 
 echo ""
 echo "=== Phase 9 E2E Test Runner ==="
@@ -72,7 +81,7 @@ echo ""
 export ADMIN_TOKEN="dev-admin-secret-token"
 export DATABASE_URL="$E2E_DB_PATH"
 export PORT="$BACKEND_PORT"
-./venv/bin/python -m uvicorn src.main:create_app \
+"$PYTHON_BIN" -m uvicorn src.main:create_app \
     --host 127.0.0.1 \
     --port "$BACKEND_PORT" \
     --factory &
@@ -91,7 +100,7 @@ echo ""
 echo "Running Playwright E2E tests..."
 export E2E_BASE_URL="$FRONTEND_URL"
 
-./venv/bin/pytest tests/test_e2e.py \
+"$PYTEST_BIN" tests/test_e2e.py \
     -v \
     -m e2e \
     --screenshot on-failure \
